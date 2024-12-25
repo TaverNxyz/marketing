@@ -1,0 +1,62 @@
+---
+import SEOHead from '../components/SEOHead.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Discover curated product recommendations and the best deals from Amazon, handpicked for smart shoppers." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <SEOHead title={title} description={description} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Structured data for better SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "SmartBuy Guide",
+        "url": "https://smartbuyguide.com",
+        "description": "Your trusted source for curated Amazon product recommendations"
+      }
+    </script>
+  </head>
+  <body class="bg-background">
+    <header class="bg-white shadow-sm">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex">
+            <a href="/" class="flex items-center gap-2">
+              <svg class="w-8 h-8 text-accent" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+              <span class="text-xl font-bold text-primary-800">SmartBuy Guide</span>
+            </a>
+          </div>
+          <div class="flex items-center">
+            <a href="/categories" class="text-primary-700 hover:text-primary-900 px-3 py-2">Categories</a>
+            <a href="/deals" class="text-primary-700 hover:text-primary-900 px-3 py-2">Deals</a>
+            <a href="/about" class="text-primary-700 hover:text-primary-900 px-3 py-2">About</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="bg-primary-50 mt-12">
+      <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-primary-600 text-sm">
+          As an Amazon Associate, we earn from qualifying purchases.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
